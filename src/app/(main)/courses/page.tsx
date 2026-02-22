@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import { prisma } from '@/lib/db/prisma';
-import { getLocale } from 'next-intl/server';
 
 export default async function CoursesPage() {
-  const locale = await getLocale();
+  const locale = 'he';
   const courses = await prisma.course.findMany({
     orderBy: { order: 'asc' },
     include: { modules: { include: { _count: { select: { lessons: true } } } } },

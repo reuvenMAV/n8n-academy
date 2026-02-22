@@ -3,7 +3,6 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/db/prisma';
 import { LessonLayout } from '@/components/lesson/LessonLayout';
-import { getLocale } from 'next-intl/server';
 
 export default async function LessonPage({
   params,
@@ -12,7 +11,7 @@ export default async function LessonPage({
 }) {
   const { courseId, lessonId } = await params;
   const session = await getServerSession(authOptions);
-  const locale = (await getLocale()) as 'he' | 'en';
+  const locale = 'he' as const;
   const lesson = await prisma.lesson.findUnique({
     where: { id: lessonId },
     include: { module: { include: { course: true } } },

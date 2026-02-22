@@ -1,10 +1,9 @@
 'use client';
 
-import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 
 export function LanguageToggle() {
-  const locale = useLocale();
+  const locale = 'he';
   const router = useRouter();
   const pathname = usePathname();
   const nextLocale = locale === 'he' ? 'en' : 'he';
