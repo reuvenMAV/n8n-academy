@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useCallback } from 'react';
-import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { useCanvasStore } from '@/store/canvasStore';
@@ -13,7 +12,6 @@ interface Message {
 }
 
 export function AITutorPanel() {
-  const t = useTranslations('ai');
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -74,7 +72,7 @@ export function AITutorPanel() {
         type="button"
         onClick={() => setOpen((o) => !o)}
         className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-primary/90"
-        aria-label={t('tutor')}
+        aria-label="מורה AI"
       >
         {open ? <X className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
       </button>
@@ -83,7 +81,7 @@ export function AITutorPanel() {
           <div className="p-2 border-b border-white/10 font-medium text-text-primary">{t('tutor')}</div>
           <div className="flex-1 overflow-y-auto p-2 space-y-2">
             {messages.length === 0 && (
-              <p className="text-sm text-text-secondary">{t('placeholder')}</p>
+              <p className="text-sm text-text-secondary">שאלו שאלה על ה-workflow...</p>
             )}
             {messages.map((msg, i) => (
               <div
@@ -109,7 +107,7 @@ export function AITutorPanel() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
-              placeholder={t('placeholder')}
+              placeholder="שאלו שאלה על ה-workflow..."
               className="flex-1 rounded-md border border-white/20 bg-background px-3 py-2 text-sm text-text-primary placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-primary"
             />
             <Button size="sm" onClick={handleSend} disabled={streaming}>

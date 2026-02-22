@@ -3,9 +3,17 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { LayoutDashboard, BookOpen, Gamepad2, Trophy, User, BookMarked } from 'lucide-react';
+
+const NAV_LABELS: Record<string, string> = {
+  dashboard: 'לוח בקרה',
+  courses: 'קורסים',
+  review: 'חזרה יומית',
+  playground: 'מגרש משחקים',
+  challenges: 'אתגרים',
+  profile: 'פרופיל',
+};
 
 const items = [
   { href: '/dashboard', icon: LayoutDashboard, key: 'dashboard' },
@@ -17,7 +25,6 @@ const items = [
 ];
 
 export function Sidebar() {
-  const t = useTranslations('nav');
   const pathname = usePathname();
   const [dueCount, setDueCount] = useState<number | null>(null);
   useEffect(() => {
@@ -42,7 +49,7 @@ export function Sidebar() {
             )}
           >
             <Icon className="w-5 h-5 shrink-0" />
-            {t(key)}
+            {NAV_LABELS[key]}
             {key === 'review' && dueCount != null && dueCount > 0 && (
               <span className="ml-auto bg-primary text-white text-xs font-bold rounded-full min-w-[1.25rem] h-5 px-1.5 flex items-center justify-center">
                 {dueCount > 99 ? '99+' : dueCount}

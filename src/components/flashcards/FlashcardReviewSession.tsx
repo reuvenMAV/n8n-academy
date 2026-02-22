@@ -6,10 +6,9 @@ import Confetti from 'react-confetti';
 import toast from 'react-hot-toast';
 import { FlashcardCard, type FlashcardItem } from './FlashcardCard';
 import { Button } from '@/components/ui/button';
-import { useTranslations } from 'next-intl';
 
 const XP_PER_CARD = 5;
-const RATING_LABELS = { 0: 'again', 1: 'hard', 2: 'good', 3: 'easy' } as const;
+const RATING_LABELS_HE = { 0: 'שוב', 1: 'קשה', 2: 'טוב', 3: 'קל' } as const;
 const RATING_INTERVALS_HE = { 0: 'מחר', 1: '3 ימים', 2: '7 ימים', 3: '14 ימים' } as const;
 const RATING_INTERVALS_EN = { 0: 'Tomorrow', 1: '3 days', 2: '7 days', 3: '14 days' } as const;
 
@@ -22,7 +21,6 @@ export function FlashcardReviewSession({
   cramMode?: boolean;
   initialUrl?: string;
 }) {
-  const t = useTranslations('flashcards');
   const [cards, setCards] = useState<FlashcardItem[]>([]);
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -84,7 +82,7 @@ export function FlashcardReviewSession({
     if (index >= cards.length - 1) {
       setSessionComplete(true);
       setShowConfetti(true);
-      toast.success(t('sessionComplete'));
+      toast.success('סיימת את החזרה היומית! 🎉');
       setTimeout(() => setShowConfetti(false), 5000);
       const xpGain = cramMode ? 0 : cards.length * XP_PER_CARD;
       if (xpGain > 0) toast.success(`+${xpGain} XP`);
@@ -106,8 +104,8 @@ export function FlashcardReviewSession({
   if (cards.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] text-center gap-4">
-        <p className="text-xl text-text-primary">{t('noCardsToday')} 🎉</p>
-        <p className="text-text-muted">{t('nextReview')}</p>
+        <p className="text-xl text-text-primary">אין כרטיסיות לחזרה היום 🎉</p>
+        <p className="text-text-muted">חזרה הבאה</p>
         {onComplete && <Button onClick={onComplete}>חזרה</Button>}
       </div>
     );
@@ -186,7 +184,7 @@ export function FlashcardReviewSession({
             מקשי קיצור: Space להיפוך | 1-4 לדירוג
           </p>
           {!flipped && (
-            <p className="text-center text-sm text-text-muted mt-1">{t('showAnswer')} ←</p>
+            <p className="text-center text-sm text-text-muted mt-1">הצג תשובה ←</p>
           )}
         </motion.div>
       </AnimatePresence>

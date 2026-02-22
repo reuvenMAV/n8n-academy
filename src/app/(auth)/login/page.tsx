@@ -4,14 +4,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import toast from 'react-hot-toast';
 
 export default function LoginPage() {
-  const t = useTranslations('auth');
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') ?? '/dashboard';
@@ -40,10 +38,10 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="w-full max-w-md rounded-lg bg-surface border border-white/10 p-6 shadow-xl">
-        <h1 className="text-2xl font-bold text-center mb-6">{t('loginTitle')}</h1>
+        <h1 className="text-2xl font-bold text-center mb-6">התחברות</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="email">{t('email')}</Label>
+            <Label htmlFor="email">אימייל</Label>
             <Input
               id="email"
               type="email"
@@ -54,7 +52,7 @@ export default function LoginPage() {
             />
           </div>
           <div>
-            <Label htmlFor="password">{t('password')}</Label>
+            <Label htmlFor="password">סיסמה</Label>
             <Input
               id="password"
               type="password"
@@ -65,13 +63,13 @@ export default function LoginPage() {
             />
           </div>
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? '...' : t('loginTitle')}
+            {loading ? '...' : 'התחברות'}
           </Button>
         </form>
         <p className="mt-4 text-center text-sm text-text-secondary">
-          {t('noAccount')}{' '}
+          אין לך חשבון?{' '}
           <Link href="/register" className="text-primary hover:underline">
-            {t('registerTitle')}
+            הרשמה
           </Link>
         </p>
         <div className="mt-4 pt-4 border-t border-white/10">

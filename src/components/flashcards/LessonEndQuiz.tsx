@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FlashcardCard, type FlashcardItem } from './FlashcardCard';
 import { Button } from '@/components/ui/button';
-import { useTranslations } from 'next-intl';
 
 export function LessonEndQuiz({
   lessonId,
@@ -13,7 +12,6 @@ export function LessonEndQuiz({
   lessonId: string;
   onClose: () => void;
 }) {
-  const t = useTranslations('flashcards');
   const [cards, setCards] = useState<FlashcardItem[]>([]);
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -43,7 +41,7 @@ export function LessonEndQuiz({
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
         <div className="bg-surface rounded-xl border border-white/10 p-6 max-w-sm text-center shadow-xl" onClick={(e) => e.stopPropagation()}>
           <p className="text-text-primary mb-4">אין כרטיסיות לשיעור זה.</p>
-          <Button onClick={onClose}>{t('finishReview')}</Button>
+          <Button onClick={onClose}>סיים חזרה</Button>
         </div>
       </div>
     );
@@ -88,7 +86,7 @@ export function LessonEndQuiz({
         <div className="mt-4 flex gap-2 justify-end">
           {!flipped ? (
             <Button size="sm" onClick={() => setFlipped(true)}>
-              {t('showAnswer')}
+              הצג תשובה
             </Button>
           ) : (
             <>
@@ -102,7 +100,7 @@ export function LessonEndQuiz({
                 </Button>
               )}
               <Button size="sm" onClick={onClose}>
-                {t('finishReview')}
+                סיים חזרה
               </Button>
             </>
           )}

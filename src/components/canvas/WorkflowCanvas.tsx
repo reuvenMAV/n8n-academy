@@ -24,7 +24,6 @@ import {
   type EdgeChange,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { useTranslations, useLocale } from 'next-intl';
 import { AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
 import Confetti from 'react-confetti';
@@ -76,8 +75,7 @@ function WorkflowCanvasInner({
   userId?: string | null;
   starterTemplate?: { nodes: Array<{ type?: string; position?: { x: number; y: number } }>; edges: unknown[] } | null;
 }) {
-  const t = useTranslations('canvas');
-  const locale = useLocale() as 'he' | 'en';
+  const locale = 'he' as const;
   const { screenToFlowPosition } = useReactFlow();
   const [nodes, setNodes, onNodesChange] = useNodesState<Node<CanvasNodeData>>(initialNodes ?? []);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges ?? []);
@@ -209,10 +207,10 @@ function WorkflowCanvasInner({
         setShowConfetti(true);
         setTimeout(() => setShowConfetti(false), 3000);
       } else if (hasError) {
-        toast.error(t('runError'));
+        toast.error('שגיאה בהרצה');
       }
     } catch (err) {
-      toast.error(t('runError'));
+      toast.error('שגיאה בהרצה');
     } finally {
       setIsRunning(false);
     }
@@ -241,7 +239,7 @@ function WorkflowCanvasInner({
     a.download = 'workflow.json';
     a.click();
     URL.revokeObjectURL(url);
-    toast.success(t('exported'));
+    toast.success('Workflow יוצא');
   }, [nodes, edges, t]);
 
   useEffect(() => {
@@ -257,7 +255,7 @@ function WorkflowCanvasInner({
     };
     window.addEventListener('workflow-validate', handler);
     return () => window.removeEventListener('workflow-validate', handler);
-  }, [nodes, edges, validationRules, locale, lessonId, onValidateResult, t]);
+  }, [nodes, edges, validationRules, locale, lessonId, onValidateResult]);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -306,11 +304,11 @@ function WorkflowCanvasInner({
               <>
                 <Button size="sm" onClick={handleRun} disabled={isRunning} className="gap-1">
                   <Play className="w-4 h-4" />
-                  {t('run')}
+                  הרץ
                 </Button>
                 <Button size="sm" variant="outline" onClick={handleStop} disabled={!isRunning} className="gap-1">
                   <Square className="w-4 h-4" />
-                  {t('stop')}
+                  עצור
                 </Button>
                 <Button size="sm" variant="outline" onClick={handleClear} className="gap-1">
                   <Trash2 className="w-4 h-4" />
@@ -318,7 +316,7 @@ function WorkflowCanvasInner({
                 </Button>
                 <Button size="sm" variant="outline" onClick={handleExport} className="gap-1">
                   <Download className="w-4 h-4" />
-                  {t('export')}
+                  ייצא
                 </Button>
               </>
             )}

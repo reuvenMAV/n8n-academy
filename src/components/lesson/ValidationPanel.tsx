@@ -1,6 +1,5 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import type { ValidationRule } from '@/lib/canvas/validationEngine';
 
@@ -21,9 +20,7 @@ export function ValidationPanel({
   lessonId: string;
   userId: string | null;
 }) {
-  const t = useTranslations('lesson');
   const locale = 'he';
-  const feedbackKey = locale === 'he' ? 'feedbackHe' : 'feedbackEn';
 
   if (validationRules.length === 0) return null;
 
@@ -33,14 +30,14 @@ export function ValidationPanel({
 
   return (
     <div className="rounded-lg border border-white/10 bg-surface p-4">
-      <h2 className="text-lg font-semibold text-text-primary mb-2">{t('validate')}</h2>
+      <h2 className="text-lg font-semibold text-text-primary mb-2">אמת</h2>
       <Button onClick={handleValidate} size="sm">
         Check solution
       </Button>
       {result && (
         <div className="mt-3 space-y-2">
           <p className="text-sm font-medium">
-            {t('score')}: {result.score}% {result.passed ? '✓' : ''}
+            ציון: {result.score}% {result.passed ? '✓' : ''}
           </p>
           <ul className="text-xs text-text-secondary space-y-1">
             {result.results.map((r) => (

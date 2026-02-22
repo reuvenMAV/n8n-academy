@@ -1,6 +1,5 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { ExecutionOutput } from '@/types/canvas';
 import { cn } from '@/lib/utils';
 
@@ -55,16 +54,14 @@ function JsonTree({ value, depth = 0 }: { value: unknown; depth?: number }) {
 }
 
 export function DataInspector({ outputs, selectedNodeId, onSelectNode }: DataInspectorProps) {
-  const t = useTranslations('canvas');
-
   return (
     <div className="w-72 h-full bg-surface border-l border-white/10 flex flex-col overflow-hidden">
       <div className="p-3 border-b border-white/10">
-        <h3 className="text-sm font-semibold text-text-primary">{t('dataInspector')}</h3>
+        <h3 className="text-sm font-semibold text-text-primary">בודק נתונים</h3>
       </div>
       <div className="flex-1 overflow-y-auto p-2 font-mono text-xs">
         {outputs.length === 0 ? (
-          <p className="text-text-secondary">{t('runToSeeOutput')}</p>
+          <p className="text-text-secondary">הרץ workflow כדי לראות פלט</p>
         ) : (
           <div className="space-y-3">
             {outputs.map((out) => (

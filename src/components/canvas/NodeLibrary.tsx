@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback } from 'react';
-import { useTranslations } from 'next-intl';
 import { NODE_TYPES } from '@/lib/canvas/nodeTypes';
 import { cn } from '@/lib/utils';
 import * as Icons from 'lucide-react';
@@ -31,8 +30,15 @@ interface NodeLibraryProps {
   locale?: 'he' | 'en';
 }
 
+const CANVAS_LABELS: Record<string, string> = {
+  nodeLibrary: 'ספריית נודים',
+  category_trigger: 'טריגרים',
+  category_core: 'ליבה',
+  category_integration: 'אינטגרציות',
+  category_ai: 'AI',
+};
+
 export function NodeLibrary({ onDragStart, locale = 'he' }: NodeLibraryProps) {
-  const t = useTranslations('canvas');
   const grouped = CATEGORY_ORDER.map((cat) => ({
     category: cat,
     nodes: NODE_TYPES.filter((n) => n.category === cat),
@@ -57,7 +63,7 @@ export function NodeLibrary({ onDragStart, locale = 'he' }: NodeLibraryProps) {
         {grouped.map(({ category, nodes }) => (
           <div key={category}>
             <h4 className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2 px-1">
-              {t(`category_${category}`)}
+              {CANVAS_LABELS[`category_${category}`] ?? category}
             </h4>
             <div className="space-y-1">
               {nodes.map((node) => {

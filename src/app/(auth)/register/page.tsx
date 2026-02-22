@@ -3,14 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import toast from 'react-hot-toast';
 
 export default function RegisterPage() {
-  const t = useTranslations('auth');
   const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -44,14 +42,14 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="w-full max-w-md rounded-lg bg-surface border border-white/10 p-6 shadow-xl">
-        <h1 className="text-2xl font-bold text-center mb-6">{t('registerTitle')}</h1>
+        <h1 className="text-2xl font-bold text-center mb-6">הרשמה</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="name">{t('name')}</Label>
+            <Label htmlFor="name">שם</Label>
             <Input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} className="mt-1" />
           </div>
           <div>
-            <Label htmlFor="email">{t('email')}</Label>
+            <Label htmlFor="email">אימייל</Label>
             <Input
               id="email"
               type="email"
@@ -62,7 +60,7 @@ export default function RegisterPage() {
             />
           </div>
           <div>
-            <Label htmlFor="password">{t('password')}</Label>
+            <Label htmlFor="password">סיסמה</Label>
             <Input
               id="password"
               type="password"
@@ -74,13 +72,13 @@ export default function RegisterPage() {
             />
           </div>
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? '...' : t('registerTitle')}
+            {loading ? '...' : 'הרשמה'}
           </Button>
         </form>
         <p className="mt-4 text-center text-sm text-text-secondary">
-          {t('hasAccount')}{' '}
+          כבר יש חשבון?{' '}
           <Link href="/login" className="text-primary hover:underline">
-            {t('loginTitle')}
+            התחברות
           </Link>
         </p>
       </div>

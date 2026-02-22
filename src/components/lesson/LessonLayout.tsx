@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
 import { useLessonStore } from '@/store/lessonStore';
 import { WorkflowCanvas } from '@/components/canvas/WorkflowCanvas';
 import { InstructionsPanel } from '@/components/lesson/InstructionsPanel';
@@ -44,7 +43,6 @@ export function LessonLayout({
   estimatedMin,
   userId,
 }: LessonLayoutProps) {
-  const t = useTranslations('lesson');
   const setCurrentLessonId = useLessonStore((s) => s.setCurrentLessonId);
   useEffect(() => {
     setCurrentLessonId(lessonId);
@@ -82,7 +80,7 @@ export function LessonLayout({
           />
           {hints.length > 0 && (
             <div className="rounded-lg border border-white/10 bg-surface p-3">
-              <p className="text-sm font-medium text-text-primary">{t('hint')}</p>
+              <p className="text-sm font-medium text-text-primary">רמז</p>
               <Button
                 size="sm"
                 variant="outline"
