@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "courses": "Courses",
+    "review": "Daily review",
+    "playground": "Playground",
+    "challenges": "Challenges",
+    "profile": "Profile",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "landing": {
+    "heroTitle": "Learn N8N by Doing",
+    "heroSubtitle": "Build real workflows in the browser, step by step.",
+    "cta": "Get Started",
+    "features": "Features"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "loginTitle": "Login",
+    "registerTitle": "Register",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?"
+  },
+  "canvas": {
+    "nodeLibrary": "Node Library",
+    "category_trigger": "Triggers",
+    "category_core": "Core",
+    "category_integration": "Integrations",
+    "category_ai": "AI",
+    "run": "Run",
+    "stop": "Stop",
+    "clear": "Clear",
+    "export": "Export",
+    "dataInspector": "Data Inspector",
+    "runToSeeOutput": "Run workflow to see output",
+    "runSuccess": "Workflow completed!",
+    "runError": "Run error",
+    "canvasCleared": "Canvas cleared",
+    "exported": "Workflow exported",
+    "mode": "Mode",
+    "watch": "Watch",
+    "guided": "Guided",
+    "free": "Free",
+    "challenge": "Challenge"
+  },
+  "lesson": {
+    "instructions": "Instructions",
+    "validate": "Validate",
+    "next": "Next",
+    "previous": "Previous",
+    "hint": "Hint",
+    "completed": "Completed!",
+    "score": "Score"
+  },
+  "validation": {
+    "passed": "Passed",
+    "failed": "Failed",
+    "score": "Score",
+    "feedback": "Feedback"
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "xp": "XP",
+    "level": "Level",
+    "streak": "Streak",
+    "progress": "Progress",
+    "badges": "Badges",
+    "recentCourses": "Recent courses"
+  },
+  "gamification": {
+    "level_beginner": "Beginner",
+    "level_builder": "Builder",
+    "level_automator": "Automator",
+    "level_pro": "Pro",
+    "level_master": "Master"
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "unauthorized": "Login required"
+  },
+  "ai": {
+    "tutor": "AI Tutor",
+    "placeholder": "Ask a question about your workflow...",
+    "send": "Send"
+  },
+  "flashcards": {
+    "title": "Flashcards",
+    "dueToday": "Due today",
+    "showAnswer": "Show answer",
+    "again": "Again",
+    "hard": "Hard",
+    "good": "Good",
+    "easy": "Easy",
+    "sessionComplete": "You finished your daily review! 🎉",
+    "noCardsToday": "No cards due today",
+    "nextReview": "Next review",
+    "finishReview": "Finish review"
+  }
+}

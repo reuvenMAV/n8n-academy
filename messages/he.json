@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "dashboard": "לוח בקרה",
+    "courses": "קורסים",
+    "review": "חזרה יומית",
+    "playground": "מגרש משחקים",
+    "challenges": "אתגרים",
+    "profile": "פרופיל",
+    "login": "התחברות",
+    "register": "הרשמה",
+    "logout": "יציאה"
+  },
+  "landing": {
+    "heroTitle": "למדו N8N by Doing",
+    "heroSubtitle": "בנו workflows אמיתיים בדפדפן, צעד אחר צעד.",
+    "cta": "התחילו עכשיו",
+    "features": "תכונות"
+  },
+  "auth": {
+    "email": "אימייל",
+    "password": "סיסמה",
+    "name": "שם",
+    "loginTitle": "התחברות",
+    "registerTitle": "הרשמה",
+    "noAccount": "אין לך חשבון?",
+    "hasAccount": "כבר יש חשבון?"
+  },
+  "canvas": {
+    "nodeLibrary": "ספריית נודים",
+    "category_trigger": "טריגרים",
+    "category_core": "ליבה",
+    "category_integration": "אינטגרציות",
+    "category_ai": "AI",
+    "run": "הרץ",
+    "stop": "עצור",
+    "clear": "נקה",
+    "export": "ייצא",
+    "dataInspector": "בודק נתונים",
+    "runToSeeOutput": "הרץ workflow כדי לראות פלט",
+    "runSuccess": "Workflow הושלם!",
+    "runError": "שגיאה בהרצה",
+    "canvasCleared": "הקנבס נוקה",
+    "exported": "Workflow יוצא",
+    "mode": "מצב",
+    "watch": "צפייה",
+    "guided": "מונחה",
+    "free": "חופשי",
+    "challenge": "אתגר"
+  },
+  "lesson": {
+    "instructions": "הוראות",
+    "validate": "אמת",
+    "next": "הבא",
+    "previous": "הקודם",
+    "hint": "רמז",
+    "completed": "הושלם!",
+    "score": "ציון"
+  },
+  "validation": {
+    "passed": "עבר",
+    "failed": "נכשל",
+    "score": "ציון",
+    "feedback": "משוב"
+  },
+  "dashboard": {
+    "welcome": "שלום",
+    "xp": "XP",
+    "level": "רמה",
+    "streak": "רצף",
+    "progress": "התקדמות",
+    "badges": "תגים",
+    "recentCourses": "קורסים אחרונים"
+  },
+  "gamification": {
+    "level_beginner": "מתחיל",
+    "level_builder": "בונה",
+    "level_automator": "אוטומטור",
+    "level_pro": "פרו",
+    "level_master": "מאסטר"
+  },
+  "errors": {
+    "generic": "משהו השתבש",
+    "unauthorized": "נדרשת התחברות"
+  },
+  "ai": {
+    "tutor": "מורה AI",
+    "placeholder": "שאלו שאלה על ה-workflow...",
+    "send": "שלח"
+  },
+  "flashcards": {
+    "title": "כרטיסיות חזרה",
+    "dueToday": "לחזרה היום",
+    "showAnswer": "הצג תשובה",
+    "again": "שוב",
+    "hard": "קשה",
+    "good": "טוב",
+    "easy": "קל",
+    "sessionComplete": "סיימת את החזרה היומית! 🎉",
+    "noCardsToday": "אין כרטיסיות לחזרה היום",
+    "nextReview": "חזרה הבאה",
+    "finishReview": "סיים חזרה"
+  }
+}

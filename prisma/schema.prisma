@@ -1,0 +1,185 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id                String            @id @default(cuid())
+  email             String            @unique
+  name              String?
+  image             String?
+  password          String?
+  xp                Int               @default(0)
+  level             String            @default("beginner")
+  streak            Int               @default(0)
+  lastActiveAt      DateTime?
+  language          String            @default("he")
+  flashcardStreak   Int               @default(0)
+  lastReviewDate    DateTime?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  accounts          Account[]
+  sessions          Session[]
+  progress          Progress[]
+  badges            UserBadge[]
+  workflows         SavedWorkflow[]
+  mistakeLogs       MistakeLog[]
+  flashcardReviews  FlashcardReview[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  titleHe     String
+  titleEn     String
+  descHe      String
+  descEn      String
+  level       String
+  order       Int
+  imageUrl    String?
+  modules     Module[]
+}
+
+model Module {
+  id       String   @id @default(cuid())
+  courseId String
+  titleHe  String
+  titleEn  String
+  order    Int
+  course   Course   @relation(fields: [courseId], references: [id])
+  lessons  Lesson[]
+}
+
+model Lesson {
+  id               String     @id @default(cuid())
+  moduleId         String
+  slug             String
+  titleHe          String
+  titleEn          String
+  type             String
+  xpReward         Int        @default(50)
+  order            Int
+  content          Json
+  solution         Json?
+  starterTemplate  Json?
+  validationRules  Json
+  hints            Json       @default("[]")
+  estimatedMin     Int        @default(10)
+  module           Module     @relation(fields: [moduleId], references: [id])
+  progress         Progress[]
+  mistakeLogs      MistakeLog[]
+  flashcards       Flashcard[]
+}
+
+model Flashcard {
+  id       String   @id @default(cuid())
+  lessonId String
+  front    String
+  frontEn  String
+  back     String
+  backEn   String
+  type     String   // concept | node | expression | code
+  lesson   Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  reviews  FlashcardReview[]
+}
+
+model FlashcardReview {
+  id          String    @id @default(cuid())
+  userId      String
+  cardId      String
+  interval    Int       @default(1)
+  repetitions Int       @default(0)
+  easeFactor  Float     @default(2.5)
+  nextReview  DateTime  @default(now())
+  lastRating Int?
+  reviewedAt  DateTime  @default(now())
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  card        Flashcard @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  @@unique([userId, cardId])
+}
+
+model Progress {
+  id          String    @id @default(cuid())
+  userId      String
+  lessonId    String
+  completed   Boolean   @default(false)
+  score       Int?
+  attempts    Int       @default(0)
+  completedAt DateTime?
+  user        User      @relation(fields: [userId], references: [id])
+  lesson      Lesson    @relation(fields: [lessonId], references: [id])
+  @@unique([userId, lessonId])
+}
+
+model SavedWorkflow {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  data      Json
+  isPublic  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Badge {
+  id          String      @id @default(cuid())
+  key         String      @unique
+  titleHe     String
+  titleEn     String
+  descHe      String
+  descEn      String
+  icon        String
+  xpThreshold Int?
+  users       UserBadge[]
+}
+
+model UserBadge {
+  userId   String
+  badgeId  String
+  earnedAt DateTime @default(now())
+  user     User     @relation(fields: [userId], references: [id])
+  badge    Badge    @relation(fields: [badgeId], references: [id])
+  @@id([userId, badgeId])
+}
+
+model MistakeLog {
+  id        String   @id @default(cuid())
+  userId    String
+  lessonId  String
+  nodeType  String
+  ruleId    String
+  timestamp DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
