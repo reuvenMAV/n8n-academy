@@ -15,6 +15,7 @@ import type { ValidationRule } from '@/lib/canvas/validationEngine';
 interface LessonLayoutProps {
   lessonId: string;
   courseId: string;
+  title: string;
   titleHe: string;
   titleEn: string;
   type: string;
@@ -31,6 +32,7 @@ interface LessonLayoutProps {
 export function LessonLayout({
   lessonId,
   courseId,
+  title,
   titleHe,
   titleEn,
   type,
@@ -62,10 +64,10 @@ export function LessonLayout({
 <Link href={`/courses/${courseId}`}>
             <Button variant="ghost" size="sm">
               <ChevronLeft className="w-4 h-4" />
-              Back
+              חזרה
             </Button>
           </Link>
-        <h1 className="text-xl font-bold text-text-primary">{titleEn}</h1>
+        <h1 className="text-xl font-bold text-text-primary">{title}</h1>
       </div>
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-4 min-h-0">
         <div className="lg:col-span-1 flex flex-col gap-2 overflow-auto">

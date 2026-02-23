@@ -57,7 +57,7 @@ export function NodeLibrary({ onDragStart, locale = 'he' }: NodeLibraryProps) {
   return (
     <div className="w-56 h-full bg-surface border-r border-white/10 flex flex-col overflow-hidden">
       <div className="p-3 border-b border-white/10">
-        <h3 className="text-sm font-semibold text-text-primary">{t('nodeLibrary')}</h3>
+        <h3 className="text-sm font-semibold text-text-primary">{CANVAS_LABELS.nodeLibrary}</h3>
       </div>
       <div className="flex-1 overflow-y-auto p-2 space-y-4">
         {grouped.map(({ category, nodes }) => (

@@ -203,7 +203,7 @@ function WorkflowCanvasInner({
       onRun?.(result);
       const hasError = result.some((r) => r.error);
       if (!hasError && result.length > 0) {
-        toast.success(t('runSuccess'));
+        toast.success('ההרצה הצליחה');
         setShowConfetti(true);
         setTimeout(() => setShowConfetti(false), 3000);
       } else if (hasError) {
@@ -214,7 +214,7 @@ function WorkflowCanvasInner({
     } finally {
       setIsRunning(false);
     }
-  }, [nodes, edges, onRun, t]);
+  }, [nodes, edges, onRun]);
 
   const handleStop = useCallback(() => {
     setIsRunning(false);
@@ -225,8 +225,8 @@ function WorkflowCanvasInner({
     setEdges([]);
     setOutputs([]);
     setSelectedNodeId(null);
-    toast.success(t('canvasCleared'));
-  }, [setNodes, setEdges, t]);
+    toast.success('הקנבס נוקה');
+  }, [setNodes, setEdges]);
 
   const handleExport = useCallback(() => {
     const data = { nodes, edges };
@@ -240,7 +240,7 @@ function WorkflowCanvasInner({
     a.click();
     URL.revokeObjectURL(url);
     toast.success('Workflow יוצא');
-  }, [nodes, edges, t]);
+  }, [nodes, edges]);
 
   useEffect(() => {
     const handler = async () => {
@@ -248,7 +248,7 @@ function WorkflowCanvasInner({
       const result = await validateWorkflow(nodes, edges, validationRules as import('@/lib/canvas/validationEngine').ValidationRule[], locale, lessonId);
       onValidateResult(result);
       if (result.passed) {
-        toast.success(t('runSuccess'));
+        toast.success('ההרצה הצליחה');
         setShowConfetti(true);
         setTimeout(() => setShowConfetti(false), 3000);
       }
@@ -312,7 +312,7 @@ function WorkflowCanvasInner({
                 </Button>
                 <Button size="sm" variant="outline" onClick={handleClear} className="gap-1">
                   <Trash2 className="w-4 h-4" />
-                  {t('clear')}
+                  נקה
                 </Button>
                 <Button size="sm" variant="outline" onClick={handleExport} className="gap-1">
                   <Download className="w-4 h-4" />

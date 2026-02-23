@@ -23,10 +23,12 @@ export default async function LessonPage({
   const hints = (lesson.hints as string[]) ?? [];
   const starterTemplate = lesson.starterTemplate as { nodes: unknown[]; edges: unknown[] } | null;
 
+  const title = locale === 'he' ? lesson.titleHe : lesson.titleEn;
   return (
     <LessonLayout
       lessonId={lesson.id}
       courseId={courseId}
+      title={title}
       titleHe={lesson.titleHe}
       titleEn={lesson.titleEn}
       type={lesson.type}
